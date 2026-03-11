@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - NomadIndia</title>
+  <style>
+    :root {
+      --primary: #2a9d8f;
+      --secondary: #e9c46a;
+      --dark: #264653;
+      --accent: #f4a261;
+      --danger: #e76f51;
+      --light: #f8f9fa;
+      --booking: #4CAF50;
+      --provider: #2196F3;
+      --pricing: #FF9800;
+      --inconvenience: #9C27B0;
+      --doubts: #3F51B5;
+      --technical: #F44336;
+      --complaints: #607D8B;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      background-color: white;
+      color: var(--dark);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .back-btn:hover {
+      background-color: var(--secondary);
+      color: var(--dark);
+    }
+
+    .issues-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .issue-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-top: 5px solid var(--accent);
+    }
+
+    .issue-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .issue-card.booking {
+      border-top-color: var(--booking);
+    }
+
+    .issue-card.provider {
+      border-top-color: var(--provider);
+    }
+
+    .issue-card.pricing {
+      border-top-color: var(--pricing);
+    }
+
+    .issue-card.inconvenience {
+      border-top-color: var(--inconvenience);
+    }
+
+    .issue-card.doubts {
+      border-top-color: var(--doubts);
+    }
+
+    .issue-card.technical {
+      border-top-color: var(--technical);
+    }
+
+    .issue-card.complaints {
+      border-top-color: var(--complaints);
+    }
+
+    .issue-title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .issue-desc {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .issue-btn {
+      display: inline-block;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    /* Unique button colors for each issue type */
+    .issue-card.booking .issue-btn {
+      background-color: var(--booking);
+      color: white;
+    }
+    .issue-card.provider .issue-btn {
+      background-color: var(--provider);
+      color: white;
+    }
+    .issue-card.pricing .issue-btn {
+      background-color: var(--pricing);
+      color: white;
+    }
+    .issue-card.inconvenience .issue-btn {
+      background-color: var(--inconvenience);
+      color: white;
+    }
+    .issue-card.doubts .issue-btn {
+      background-color: var(--doubts);
+      color: white;
+    }
+    .issue-card.technical .issue-btn {
+      background-color: var(--technical);
+      color: white;
+    }
+    .issue-card.complaints .issue-btn {
+      background-color: var(--complaints);
+      color: white;
+    }
+
+    .issue-btn:hover {
+      filter: brightness(90%);
+      transform: translateY(-2px);
+    }
+
+    .contact-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .contact-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s;
+      border: 2px solid #eee;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+
+    .contact-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .contact-title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .contact-desc {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    /* Different colors for contact buttons */
+    .contact-card:nth-child(1) .contact-btn {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .contact-card:nth-child(2) .contact-btn {
+      background-color: #2196F3;
+      color: white;
+    }
+    .contact-card:nth-child(3) .contact-btn {
+      background-color: #9C27B0;
+      color: white;
+    }
+
+    .contact-btn:hover {
+      filter: brightness(90%);
+      transform: translateY(-2px);
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      z-index: 1000;
+      overflow: auto;
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 5% auto;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 600px;
+      position: relative;
+      animation: modalopen 0.5s;
+    }
+
+    @keyframes modalopen {
+      from {opacity: 0; transform: translateY(-50px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .close-btn:hover {
+      color: var(--danger);
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--dark);
+    }
+
+    /* Success message */
+    .success-message {
+      display: none;
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* Chat Interface */
+    .chat-container {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 350px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+      z-index: 1001;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header h3 {
+      margin: 0;
+    }
+
+    .close-chat {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .chat-messages {
+      height: 300px;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #f9f9f9;
+    }
+
+    .message {
+      margin-bottom: 1rem;
+      padding: 0.8rem;
+      border-radius: 8px;
+      max-width: 80%;
+    }
+
+    .user-message {
+      background: var(--primary);
+      color: white;
+      margin-left: auto;
+      border-top-right-radius: 0;
+    }
+
+    .agent-message {
+      background: #e5e5ea;
+      color: black;
+      margin-right: auto;
+      border-top-left-radius: 0;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 1rem;
+      border-top: 1px solid #eee;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-right: 0.5rem;
+    }
+
+    .send-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .issues-grid,
+      .contact-methods {
+        grid-template-columns: 1fr;
+      }
+
+      .chat-container {
+        width: 90%;
+        right: 5%;
+        bottom: 10px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>How can we help you?</h1>
+      <p class="subtitle">Choose an issue below or contact us directly</p>
+      <a href="Mainfile.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Main Page</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="issues-grid">
+      <!-- Booking Related Issues -->
+      <div class="issue-card booking">
+        <h3 class="issue-title">Booking Related Issues</h3>
+        <p class="issue-desc">Problems with reservations, cancellations, or modifications to your adventure bookings.</p>
+        <button class="issue-btn" onclick="openModal('booking')"><i class="fas fa-calendar-check"></i> Get Help</button>
+      </div>
+
+      <!-- Provider Issues -->
+      <div class="issue-card provider">
+        <h3 class="issue-title">Provider Issues</h3>
+        <p class="issue-desc">Concerns about adventure providers, guides, or service quality during your trip.</p>
+        <button class="issue-btn" onclick="openModal('provider')"><i class="fas fa-user-shield"></i> Report Issue</button>
+      </div>
+
+      <!-- Pricing Related Issues -->
+      <div class="issue-card pricing">
+        <h3 class="issue-title">Pricing Related Issues</h3>
+        <p class="issue-desc">Questions about pricing, refunds, or discrepancies in billed amounts.</p>
+        <button class="issue-btn" onclick="openModal('pricing')"><i class="fas fa-rupee-sign"></i> Resolve Now</button>
+      </div>
+
+      <!-- Inconveniences During Trip -->
+      <div class="issue-card inconvenience">
+        <h3 class="issue-title">Inconveniences During Trip</h3>
+        <p class="issue-desc">Report any discomfort, safety concerns, or unexpected issues during your adventure.</p>
+        <button class="issue-btn" onclick="openModal('inconvenience')"><i class="fas fa-exclamation-triangle"></i> Share Feedback</button>
+      </div>
+
+      <!-- General Doubts -->
+      <div class="issue-card doubts">
+        <h3 class="issue-title">General Doubts</h3>
+        <p class="issue-desc">Questions about adventures, preparation, requirements, or general information.</p>
+        <button class="issue-btn" onclick="openModal('doubts')"><i class="fas fa-question-circle"></i> Ask Question</button>
+      </div>
+
+      <!-- Technical Support -->
+      <div class="issue-card technical">
+        <h3 class="issue-title">Technical Support</h3>
+        <p class="issue-desc">Issues with website, app, payments, or any technical difficulties you're facing.</p>
+        <button class="issue-btn" onclick="openModal('technical')"><i class="fas fa-laptop-code"></i> Get Support</button>
+      </div>
+
+      <!-- Complaints -->
+      <div class="issue-card complaints">
+        <h3 class="issue-title">Complaints</h3>
+        <p class="issue-desc">Formal complaints about services, experiences, or any other serious concerns.</p>
+        <button class="issue-btn" onclick="openModal('complaints')"><i class="fas fa-exclamation-circle"></i> File Complaint</button>
+      </div>
+    </div>
+
+    <h2 style="text-align: center; margin: 3rem 0 1.5rem; color: var(--dark);">Other Ways to Reach Us</h2>
+
+    <div class="contact-methods">
+      <!-- Chat with Us -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-comments"></i>
+        </div>
+        <h3 class="contact-title">Chat with Us</h3>
+        <p class="contact-desc">Our support team is available 24/7 to answer your questions in real-time.</p>
+        <button class="contact-btn" onclick="openChat()"><i class="fas fa-comment-dots"></i> Start Chat</button>
+      </div>
+
+      <!-- Email Us -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3 class="contact-title">Email Us</h3>
+        <p class="contact-desc">Send us an email and we'll get back to you within 24 hours.</p>
+        <a href="mailto:support@nomadindia.com" class="contact-btn"><i class="fas fa-paper-plane"></i> Send Email</a>
+      </div>
+
+      <!-- Visit Center -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <h3 class="contact-title">Visit Our Center</h3>
+        <p class="contact-desc">Meet us in person at our headquarters in New Delhi.</p>
+        <button class="contact-btn" onclick="showLocation()"><i class="fas fa-directions"></i> Get Directions</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Interface -->
+  <div class="chat-container" id="chatBox">
+    <div class="chat-header">
+      <h3>Chat with Support</h3>
+      <button class="close-chat" onclick="closeChat()">&times;</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message agent-message">
+        Hi there! Welcome to NomadIndia support. How can we help you today?
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Type your message...">
+      <button class="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('bookingModal')">&times;</span>
+      <h3 class="modal-title">Booking Assistance</h3>
+      <form id="bookingForm" onsubmit="submitForm(event, 'booking')">
+        <div class="form-group">
+          <label for="bookingName">Full Name</label>
+          <input type="text" id="bookingName" required>
+        </div>
+        <div class="form-group">
+          <label for="bookingEmail">Email</label>
+          <input type="email" id="bookingEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="bookingPhone">Phone Number</label>
+          <input type="tel" id="bookingPhone" required>
+        </div>
+        <div class="form-group">
+          <label for="bookingRef">Booking Reference Number</label>
+          <input type="text" id="bookingRef">
+        </div>
+        <div class="form-group">
+          <label for="bookingIssue">Describe Your Issue</label>
+          <textarea id="bookingIssue" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit Request</button>
+      </form>
+      <div id="bookingSuccess" class="success-message">
+        <i class="fas fa-check-circle"></i> Your booking issue has been submitted successfully! We'll contact you shortly.
+      </div>
+    </div>
+  </div>
+
+  <!-- Provider Modal -->
+  <div id="providerModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('providerModal')">&times;</span>
+      <h3 class="modal-title">Provider Issue Report</h3>
+      <form id="providerForm" onsubmit="submitForm(event, 'provider')">
+        <div class="form-group">
+          <label for="providerName">Your Name</label>
+          <input type="text" id="providerName" required>
+        </div>
+        <div class="form-group">
+          <label for="providerEmail">Email</label>
+          <input type="email" id="providerEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="providerAdventure">Adventure Name</label>
+          <input type="text" id="providerAdventure" required>
+        </div>
+        <div class="form-group">
+          <label for="providerCompany">Provider Company</label>
+          <input type="text" id="providerCompany">
+        </div>
+        <div class="form-group">
+          <label for="providerIssue">Describe Your Concern</label>
+          <textarea id="providerIssue" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="providerEvidence">Upload Evidence (Optional)</label>
+          <input type="file" id="providerEvidence">
+        </div>
+        <button type="submit" class="submit-btn">Submit Report</button>
+      </form>
+      <div id="providerSuccess" class="success-message">
+        <i class="fas fa-check-circle"></i> Your provider issue has been reported. We'll investigate and get back to you.
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing Modal -->
+  <div id="pricingModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('pricingModal')">&times;</span>
+      <h3 class="modal-title">Pricing Issue Resolution</h3>
+      <form id="pricingForm" onsubmit="submitForm(event, 'pricing')">
+        <div class="form-group">
+          <label for="pricingName">Full Name</label>
+          <input type="text" id="pricingName" required>
+        </div>
+        <div class="form-group">
+          <label for="pricingEmail">Email</label>
+          <input type="email" id="pricingEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="pricingRef">Booking/Invoice Number</label>
+          <input type="text" id="pricingRef">
+        </div>
+        <div class="form-group">
+          <label for="pricingAmount">Amount in Question (₹)</label>
+          <input type="number" id="pricingAmount">
+        </div>
+        <div class="form-group">
+          <label for="pricingIssue">Describe the Pricing Issue</label>
+          <textarea id="pricingIssue" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="pricingEvidence">Upload Supporting Document</label>
+          <input type="file" id="pricingEvidence">
+        </div>
+        <button type="submit" class="submit-btn">Submit Request</button>
+      </form>
+      <div id="pricingSuccess" class="success-message">
+        <i class="fas fa-check-circle"></i> Your pricing issue has been submitted. Our team will review it shortly.
+      </div>
+    </div>
+  </div>
+
+  <!-- Inconvenience Modal -->
+  <div id="inconvenienceModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('inconvenienceModal')">&times;</span>
+      <h3 class="modal-title">Trip Inconvenience Report</h3>
+      <form id="inconvenienceForm" onsubmit="submitForm(event, 'inconvenience')">
+        <div class="form-group">
+          <label for="inconvenienceName">Your Name</label>
+          <input type="text" id="inconvenienceName" required>
+        </div>
+        <div class="form-group">
+          <label for="inconvenienceEmail">Email</label>
+          <input type="email" id="inconvenienceEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="inconvenienceDate">Trip Date</label>
+          <input type="date" id="inconvenienceDate">
+        </div>
+        <div class="form-group">
+          <label for="inconvenienceAdventure">Adventure Name</label>
+          <input type="text" id="inconvenienceAdventure" required>
+        </div>
+        <div class="form-group">
+          <label for="inconvenienceIssue">Describe the Inconvenience</label>
+          <textarea id="inconvenienceIssue" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="inconvenienceSuggestions">Suggestions for Improvement</label>
+          <textarea id="inconvenienceSuggestions"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit Feedback</button>
+      </form>
+      <div id="inconvenienceSuccess" class="success-message">
+        <i class="fas fa-check-circle"></i> Thank you for your feedback. We'll use it to improve our services.
+      </div>
+    </div>
+  </div>
+
+  <!-- Doubts Modal -->
+  <div id="doubtsModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('doubtsModal')">&times;</span>
+      <h3 class="modal-title">General Questions</h3>
+      <form id="doubtsForm" onsubmit="submitForm(event, 'doubts')">
+        <div class="form-group">
+          <label for="doubtsName">Your Name</label>
+          <input type="text" id="doubtsName" required>
+        </div>
+        <div class="form-group">
+          <label for="doubtsEmail">Email</label>
+          <input type="email" id="doubtsEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="doubtsTopic">Question Topic</label>
+          <select id="doubtsTopic">
+            <option value="adventure">Adventure Information</option>
+            <option value="preparation">Preparation Requirements</option>
+            <option value="safety">Safety Concerns</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="doubtsQuestion">Your Question</label>
+          <textarea id="doubtsQuestion" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Ask Question</button>
+      </form>
+      <div id="doubtsSuccess" class="success-message">
+        <i class="fas fa-check-circle"></i> Your question has been submitted. We'll respond within 24 hours.
+      </div>
+    </div>
+  </div>
+
+  <!-- Technical Modal -->
+  <div id="technicalModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('technicalModal')">&times;</span>
+      <h3 class="modal-title">Technical Support</h3>
+      <form id="technicalForm" onsubmit="submitForm(event, 'technical')">
+        <div class="form-group">
+          <label for="technicalName">Your Name</label>
+          <input type="text" id="technicalName" required>
+        </div>
+        <div class="form-group">
+          <label for="technicalEmail">Email</label>
+          <input type="email" id="technicalEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="technicalIssue">Technical Issue</label>
+          <select id="technicalIssue">
+            <option value="website">Website Problem</option>
+            <option value="app">Mobile App Issue</option>
+            <option value="payment">Payment Processing</option>
+            <option value="login">Login/Access</option>
+            <option value="other">Other Technical Issue</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="technicalDescription">Describe the Problem</label>
+          <textarea id="technicalDescription" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="technicalScreenshot">Upload Screenshot (Optional)</label>
+          <input type="file" id="technicalScreenshot">
+        </div>
+        <button type="submit" class="submit-btn">Get Support</button>
+      </form>
+      <div id="technicalSuccess" class="success-message">
+        <i class="fas fa-check-circle"></i> Your technical issue has been logged. Our team will address it shortly.
+      </div>
+    </div>
+  </div>
+
+  <!-- Complaints Modal -->
+  <div id="complaintsModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('complaintsModal')">&times;</span>
+      <h3 class="modal-title">Formal Complaint</h3>
+      <form id="complaintsForm" onsubmit="submitForm(event, 'complaints')">
+        <div class="form-group">
+          <label for="complaintsName">Your Name</label>
+          <input type="text" id="complaintsName" required>
+        </div>
+        <div class="form-group">
+          <label for="complaintsEmail">Email</label>
+          <input type="email" id="complaintsEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="complaintsPhone">Phone Number</label>
+          <input type="tel" id="complaintsPhone" required>
+        </div>
+        <div class="form-group">
+          <label for="complaintsDate">Incident Date</label>
+          <input type="date" id="complaintsDate">
+        </div>
+        <div class="form-group">
+          <label for="complaintsAdventure">Adventure/Service</label>
+          <input type="text" id="complaintsAdventure" required>
+        </div>
+        <div class="form-group">
+          <label for="complaintsDescription">Complaint Details</label>
+          <textarea id="complaintsDescription" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="complaintsResolution">Desired Resolution</label>
+          <textarea id="complaintsResolution"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="complaintsEvidence">Supporting Evidence (Optional)</label>
+          <input type="file" id="complaintsEvidence">
+        </div>
+        <button type="submit" class="submit-btn">Submit Complaint</button>
+      </form>
+      <div id="complaintsSuccess" class="success-message">
+        <i class="fas fa-check-circle"></i> Your formal complaint has been received. We take these seriously and will respond within 48 hours.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Modal functions
+    function openModal(type) {
+      document.getElementById(type + 'Modal').style.display = 'block';
+    }
+
+    function closeModal(type) {
+      document.getElementById(type).style.display = 'none';
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      if (event.target.className === 'modal') {
+        event.target.style.display = 'none';
+      }
+    }
+
+    // Form submission handler
+    function submitForm(event, formType) {
+      event.preventDefault();
+      
+      // In a real application, you would send the form data to a server here
+      // For this demo, we'll just show the success message
+      
+      // Show success message
+      document.getElementById(formType + 'Success').style.display = 'block';
+      
+      // Reset form after 3 seconds
+      setTimeout(function() {
+        document.getElementById(formType + 'Success').style.display = 'none';
+        document.getElementById(formType + 'Form').reset();
+        closeModal(formType + 'Modal');
+        
+        // Show confirmation alert
+        alert('Your ' + formType.replace(/([A-Z])/g, ' $1').toLowerCase() + ' form has been submitted successfully!');
+      }, 3000);
+    }
+
+    // Chat functions
+    function openChat() {
+      document.getElementById('chatBox').style.display = 'block';
+    }
+
+    function closeChat() {
+      document.getElementById('chatBox').style.display = 'none';
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const message = input.value.trim();
+      
+      if (message) {
+        // Add user message
+        const messagesDiv = document.getElementById('chatMessages');
+        const userMessage = document.createElement('div');
+        userMessage.className = 'message user-message';
+        userMessage.textContent = message;
+        messagesDiv.appendChild(userMessage);
+        
+        // Clear input
+        input.value = '';
+        
+        // Scroll to bottom
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        
+        // Simulate agent response after 1 second
+        setTimeout(function() {
+          const agentMessage = document.createElement('div');
+          agentMessage.className = 'message agent-message';
+          agentMessage.textContent = getRandomResponse();
+          messagesDiv.appendChild(agentMessage);
+          
+          // Scroll to bottom
+          messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }, 1000);
+      }
+    }
+
+    // Random responses for chat simulation
+    function getRandomResponse() {
+      const responses = [
+        "I understand your concern. Let me check that for you.",
+        "Thanks for sharing that information. We'll look into it.",
+        "I can help with that. Could you provide more details?",
+        "Our team is working on resolving similar issues. We appreciate your patience.",
+        "That's a good question! Let me find the best answer for you.",
+        "I've noted your concern and will escalate it to our support team.",
+        "Thanks for reaching out. We value your feedback!",
+        "I'm checking our database for the most accurate information about this."
+      ];
+      return responses[Math.floor(Math.random() * responses.length)];
+    }
+
+    // Handle Enter key in chat
+    document.getElementById('chatInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    // Other contact methods
+    function showLocation() {
+      alert('Our headquarters is located at:\n\nNomadIndia Adventures\n123 Himalayan Heights\nNew Delhi, India 110001\n\nOpening hours: 9AM-6PM Mon-Sat');
+      // In a real implementation, this might open a map
+    }
+  </script>
+</body>
+</html>

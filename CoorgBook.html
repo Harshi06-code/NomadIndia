@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Coorg Adventures</title>
+  <style>
+    :root {
+      --primary: #2a9d8f;
+      --secondary: #e9c46a;
+      --dark: #264653;
+      --accent: #f4a261;
+      --danger: #e76f51;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    header {
+      background: var(--dark);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    
+    .booking-details {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .booking-header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .provider-info {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .provider-card {
+      flex: 1;
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .pricing {
+      margin: 1.5rem 0;
+    }
+    
+    .price-option {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .price-option:hover {
+      background: #f0f8ff;
+    }
+    
+    .booking-form {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .btn:hover {
+      background: var(--dark);
+    }
+    
+    .back-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .back-btn:hover {
+      background: var(--danger);
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Coorg Adventure Booking</h1>
+    <p id="header-subtitle">Reserve your coffee country adventure</p>
+  </header>
+
+  <div class="container">
+    <div class="booking-details">
+        <div class="booking-header">
+          <h2 id="booking-title">Select an Activity</h2>
+          <p id="booking-location" class="location"></p>
+        </div>
+        
+        <div id="activity-content">
+          <div class="provider-info">
+            <div class="provider-card">
+              <h3>Adventure Provider</h3>
+              <p id="provider-name"></p>
+              <p id="provider-rating"></p>
+              <p id="provider-experience"></p>
+              <p id="provider-certification"></p>
+            </div>
+            
+            <div class="provider-card">
+              <h3>Activity Details</h3>
+              <p id="activity-name"></p>
+              <p id="activity-duration"></p>
+              <p id="activity-difficulty"></p>
+              <p id="activity-group"></p>
+            </div>
+          </div>
+          
+          <div class="pricing">
+            <h3>Pricing Options</h3>
+            <div id="price-options"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="booking-form">
+        <h2>Your Information</h2>
+        <form id="bookingForm">
+          <div class="form-group">
+            <label for="package">Select Package</label>
+            <select id="package" required>
+              <option value="">Choose an option</option>
+              <!-- Options will be added by JavaScript -->
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="participants">Number of Participants</label>
+            <input type="number" id="participants" min="1" max="20" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="date">Preferred Date</label>
+            <input type="date" id="date" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" required>
+          </div>
+          
+          <button type="submit" class="btn">Confirm Booking</button>
+        </form>
+      </div>
+    
+    <a href="coorg-karnataka.html" class="back-btn">← Back to Coorg Activities</a>
+  </div>
+
+  <script>
+    // Coorg Activity Database
+    const coorgActivities = {
+      "White Water Rafting": {
+        provider: "Coorg Rapids Adventures",
+        rating: "★★★★☆ (4.5/5)",
+        experience: "8+ years experience",
+        certification: "Karnataka Tourism Certified",
+        duration: "3 hours",
+        difficulty: "Moderate",
+        group: "4-8 people",
+        prices: [
+          { name: "Basic Rafting", value: "basic", desc: "12km stretch with guide", price: "₹1,800/person" },
+          { name: "Extreme Rapids", value: "extreme", desc: "Challenging sections", price: "₹2,500/person" }
+        ]
+      },
+      "Mountain Biking": {
+        provider: "Western Ghats Cycling",
+        rating: "★★★★☆ (4.3/5)",
+        experience: "5+ years experience",
+        certification: "ATAI Certified",
+        duration: "4-6 hours",
+        difficulty: "Moderate to Difficult",
+        group: "2-6 people",
+        prices: [
+          { name: "Half Day Trail", value: "halfday", desc: "Coffee plantation routes", price: "₹2,200/person" },
+          { name: "Full Day Expedition", value: "fullday", desc: "Includes lunch and support", price: "₹3,800/person" }
+        ]
+      },
+      "Trekking": {
+        provider: "Coorg Nature Trails",
+        rating: "★★★★★ (4.7/5)",
+        experience: "10+ years experience",
+        certification: "Eco-Tourism Certified",
+        duration: "5-8 hours",
+        difficulty: "Easy to Challenging",
+        group: "4-10 people",
+        prices: [
+          { name: "Tadiandamol Trek", value: "tadiandamol", desc: "Highest peak in Coorg", price: "₹1,500/person" },
+          { name: "Private Guided Trek", value: "private", desc: "Customized itinerary", price: "₹4,000/group" }
+        ]
+      },
+      "Camping": {
+        provider: "Coorg Wilderness Camp",
+        rating: "★★★★☆ (4.4/5)",
+        experience: "6+ years experience",
+        certification: "Adventure Council Approved",
+        duration: "Overnight",
+        difficulty: "Easy",
+        group: "4-12 people",
+        prices: [
+          { name: "Basic Camping", value: "basic", desc: "Tent accommodation", price: "₹1,500/person" },
+          { name: "Luxury Camping", value: "luxury", desc: "Includes meals and bonfire", price: "₹3,200/person" }
+        ]
+      },
+      "Zip Lining": {
+        provider: "Sky High Adventures",
+        rating: "★★★★☆ (4.2/5)",
+        experience: "4+ years experience",
+        certification: "International Safety Certified",
+        duration: "2 hours",
+        difficulty: "Moderate",
+        group: "2-8 people",
+        prices: [
+          { name: "Standard Zip Line", value: "standard", desc: "5 zipline course", price: "₹1,800/person" },
+          { name: "Extreme Zip Line", value: "extreme", desc: "Includes valley crossing", price: "₹2,800/person" }
+        ]
+      }
+    };
+
+    // Rest of the JavaScript same as RishikeshBook.html
+    const params = new URLSearchParams(window.location.search);
+    const activityName = params.get('activity');
+
+    if (activityName && coorgActivities[activityName]) {
+      const activity = coorgActivities[activityName];
+      
+      document.getElementById('booking-title').textContent = activityName;
+      document.getElementById('booking-location').textContent = "Location: Coorg, Karnataka";
+      document.getElementById('header-subtitle').textContent = `Book your ${activityName} adventure`;
+      
+      document.getElementById('provider-name').textContent = activity.provider;
+      document.getElementById('provider-rating').textContent = activity.rating;
+      document.getElementById('provider-experience').textContent = activity.experience;
+      document.getElementById('provider-certification').textContent = activity.certification;
+      
+      document.getElementById('activity-name').textContent = activityName;
+      document.getElementById('activity-duration').textContent = `Duration: ${activity.duration}`;
+      document.getElementById('activity-difficulty').textContent = `Difficulty: ${activity.difficulty}`;
+      document.getElementById('activity-group').textContent = `Group size: ${activity.group}`;
+      
+      const priceOptions = document.getElementById('price-options');
+      priceOptions.innerHTML = activity.prices.map(option => `
+        <div class="price-option">
+          <div>
+            <strong>${option.name}</strong>
+            <p>${option.desc}</p>
+          </div>
+          <span class="price">${option.price}</span>
+        </div>
+      `).join('');
+      
+      const packageSelect = document.getElementById('package');
+      packageSelect.innerHTML = '<option value="">Choose an option</option>' + 
+        activity.prices.map(option => 
+          `<option value="${option.value}">${option.name} - ${option.price}</option>`
+        ).join('');
+    } else {
+      window.location.href = 'Coorg-Karnataka.html';
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        activity: activityName,
+        package: document.getElementById('package').value,
+        participants: document.getElementById('participants').value,
+        date: document.getElementById('date').value,
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value
+      };
+      
+      console.log("Booking submitted:", formData);
+      alert(`Thank you ${formData.name}! Your booking for ${activityName} has been received.`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>

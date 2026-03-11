@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Gangtok Adventures</title>
+  
+  <style>
+    
+    :root {
+      --primary: #2a9d8f;
+      --secondary: #e9c46a;
+      --dark: #264653;
+      --accent: #f4a261;
+      --danger: #e76f51;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    header {
+      background: var(--dark);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    
+    .booking-details {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .booking-header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .provider-info {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .provider-card {
+      flex: 1;
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .pricing {
+      margin: 1.5rem 0;
+    }
+    
+    .price-option {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .price-option:hover {
+      background: #f0f8ff;
+    }
+    
+    .booking-form {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .btn:hover {
+      background: var(--dark);
+    }
+    
+    .back-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .back-btn:hover {
+      background: var(--danger);
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Gangtok Adventure Booking</h1>
+    <p id="header-subtitle">Reserve your Himalayan adventure</p>
+  </header>
+
+  <div class="container">
+    <div class="booking-details">
+        <div class="booking-header">
+          <h2 id="booking-title">Select an Activity</h2>
+          <p id="booking-location" class="location"></p>
+        </div>
+        
+        <div id="activity-content">
+          <div class="provider-info">
+            <div class="provider-card">
+              <h3>Adventure Provider</h3>
+              <p id="provider-name"></p>
+              <p id="provider-rating"></p>
+              <p id="provider-experience"></p>
+              <p id="provider-certification"></p>
+            </div>
+            
+            <div class="provider-card">
+              <h3>Activity Details</h3>
+              <p id="activity-name"></p>
+              <p id="activity-duration"></p>
+              <p id="activity-difficulty"></p>
+              <p id="activity-group"></p>
+            </div>
+          </div>
+          
+          <div class="pricing">
+            <h3>Pricing Options</h3>
+            <div id="price-options"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="booking-form">
+        <h2>Your Information</h2>
+        <form id="bookingForm">
+          <div class="form-group">
+            <label for="package">Select Package</label>
+            <select id="package" required>
+              <option value="">Choose an option</option>
+              <!-- Options will be added by JavaScript -->
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="participants">Number of Participants</label>
+            <input type="number" id="participants" min="1" max="20" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="date">Preferred Date</label>
+            <input type="date" id="date" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" required>
+          </div>
+          
+          <button type="submit" class="btn">Confirm Booking</button>
+        </form>
+      </div>
+    
+    <a href="gangtok-sikkim.html" class="back-btn">← Back to Gangtok Activities</a>
+  </div>
+
+  <script>
+    // Gangtok Activity Database
+    const gangtokActivities = {
+      "Himalayan Trekking": {
+        provider: "Sikkim Alpine Adventures",
+        rating: "★★★★★ (4.8/5)",
+        experience: "12+ years experience",
+        certification: "IMF Certified",
+        duration: "Full day",
+        difficulty: "Moderate to Difficult",
+        group: "4-8 people",
+        prices: [
+          { name: "Dzongri Trek", value: "dzongri", desc: "5-day high altitude trek", price: "₹12,500/person" },
+          { name: "Guided Day Hike", value: "dayhike", desc: "Local trails with guide", price: "₹3,200/person" }
+        ]
+      },
+      "River Rafting": {
+        provider: "Teesta River Rafters",
+        rating: "★★★★☆ (4.5/5)",
+        experience: "8+ years experience",
+        certification: "IRF Certified",
+        duration: "3-4 hours",
+        difficulty: "Moderate",
+        group: "4-6 people",
+        prices: [
+          { name: "Standard Rapids", value: "standard", desc: "Grade III rapids", price: "₹2,500/person" },
+          { name: "Extended Adventure", value: "extended", desc: "Includes lunch", price: "₹3,800/person" }
+        ]
+      },
+      "Mountain Biking": {
+        provider: "Himalayan Bike Tours",
+        rating: "★★★★☆ (4.3/5)",
+        experience: "6+ years experience",
+        certification: "IMBA Certified",
+        duration: "4-8 hours",
+        difficulty: "Challenging",
+        group: "2-6 people",
+        prices: [
+          { name: "Half Day Trail", value: "halfday", desc: "Scenic mountain routes", price: "₹2,800/person" },
+          { name: "Full Day Expedition", value: "fullday", desc: "With support vehicle", price: "₹4,500/person" }
+        ]
+      },
+      "Paragliding": {
+        provider: "Eastern Himalaya Flyers",
+        rating: "★★★★★ (4.9/5)",
+        experience: "10+ years experience",
+        certification: "DGCA Approved",
+        duration: "1-2 hours",
+        difficulty: "Moderate",
+        group: "1-2 people",
+        prices: [
+          { name: "Standard Flight", value: "standard", desc: "15 mins with instructor", price: "₹4,000/person" },
+          { name: "Premium Flight", value: "premium", desc: "30 mins with GoPro footage", price: "₹6,500/person" }
+        ]
+      },
+      "Cable Car Ride": {
+        provider: "Sikkim Tourism",
+        rating: "★★★★☆ (4.2/5)",
+        experience: "15+ years experience",
+        certification: "Government Approved",
+        duration: "1 hour",
+        difficulty: "Easy",
+        group: "2-4 people",
+        prices: [
+          { name: "Standard Ride", value: "standard", desc: "Return ticket", price: "₹300/person" },
+          { name: "VIP Package", value: "vip", desc: "Priority access + guide", price: "₹1,200/person" }
+        ]
+      }
+    };
+
+    // Get activity from URL
+    const params = new URLSearchParams(window.location.search);
+    const activityName = params.get('activity');
+
+    if (activityName && gangtokActivities[activityName]) {
+      const activity = gangtokActivities[activityName];
+      
+      // Update page content
+      document.getElementById('booking-title').textContent = activityName;
+      document.getElementById('booking-location').textContent = "Location: Gangtok, Sikkim";
+      document.getElementById('header-subtitle').textContent = `Book your ${activityName} adventure`;
+      
+      // Update provider info
+      document.getElementById('provider-name').textContent = activity.provider;
+      document.getElementById('provider-rating').textContent = activity.rating;
+      document.getElementById('provider-experience').textContent = activity.experience;
+      document.getElementById('provider-certification').textContent = activity.certification;
+      
+      // Update activity info
+      document.getElementById('activity-name').textContent = activityName;
+      document.getElementById('activity-duration').textContent = `Duration: ${activity.duration}`;
+      document.getElementById('activity-difficulty').textContent = `Difficulty: ${activity.difficulty}`;
+      document.getElementById('activity-group').textContent = `Group size: ${activity.group}`;
+      
+      // Update pricing options
+      const priceOptions = document.getElementById('price-options');
+      priceOptions.innerHTML = activity.prices.map(option => `
+        <div class="price-option">
+          <div>
+            <strong>${option.name}</strong>
+            <p>${option.desc}</p>
+          </div>
+          <span class="price">${option.price}</span>
+        </div>
+      `).join('');
+      
+      // Update package dropdown
+      const packageSelect = document.getElementById('package');
+      packageSelect.innerHTML = '<option value="">Choose an option</option>' + 
+        activity.prices.map(option => 
+          `<option value="${option.value}">${option.name} - ${option.price}</option>`
+        ).join('');
+    } else {
+      window.location.href = 'Gangtok-Sikkim.html';
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        activity: activityName,
+        package: document.getElementById('package').value,
+        participants: document.getElementById('participants').value,
+        date: document.getElementById('date').value,
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value
+      };
+      
+      console.log("Booking submitted:", formData);
+      alert(`Thank you ${formData.name}! Your booking for ${activityName} has been received.`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NomadIndia | Submit Review</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 15px;
+      color: #6c5ce7;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .stars {
+      display: flex;
+      gap: 5px;
+      margin-top: 5px;
+    }
+    .star {
+      font-size: 24px;
+      cursor: pointer;
+      color: #ccc;
+    }
+    .star.active {
+      color: gold;
+    }
+    button, .back-button {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #6c5ce7;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+    button:hover, .back-button:hover {
+      background-color: #5a4bd8;
+    }
+    .reviews {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .review-card {
+      border-top: 1px solid #eee;
+      padding: 15px 0;
+    }
+    .review-card:first-child {
+      border-top: none;
+    }
+    .review-card h4 {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+    .review-card p {
+      margin: 5px 0;
+    }
+    .review-card img {
+      display: block;
+      margin-top: 10px;
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .duplicate-warning {
+      color: #e74c3c;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Share Your Adventure ✨</h2>
+    <form id="reviewForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Adventurer's Name" readonly />
+
+      <label for="adventure">Adventure Name</label>
+      <input type="text" id="adventure" name="adventure" placeholder="E.g., Paragliding in Bir Billing" required />
+      <div id="duplicateWarning" class="duplicate-warning">⚠️ You've already reviewed this adventure. Submit again to update your review.</div>
+
+      <label>Rating</label>
+      <div class="stars" id="starRating">
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
+      </div>
+      <input type="hidden" id="rating" name="rating" value="0" />
+
+      <label for="comment">Your Review</label>
+      <textarea id="comment" name="comment" rows="4" placeholder="Tell us what made it unforgettable!" required></textarea>
+
+      <label for="photo">Upload a Photo (optional)</label>
+      <input type="file" id="photo" name="photo" accept="image/*" />
+
+      <button type="submit">Submit Review</button>
+    </form>
+    <a href="Mainfile.html" class="back-button">← Back to Main Page</a>
+  </div>
+
+  <div class="container" style="text-align: center; margin-bottom: 20px;">
+    <button onclick="showAllReviews()" style="margin-right: 10px;">📋 All Reviews</button>
+    <button onclick="showPhotoGallery()">📸 Photo Gallery</button>
+  </div>
+
+  <div class="reviews">
+    <h2>Adventure Reviews</h2>
+    <div id="reviewList"></div><!--A section To display reviews-->
+  </div>
+
+  <script>
+    const stars = document.querySelectorAll(".star");
+    const ratingInput = document.getElementById("rating");
+    const reviewList = document.getElementById("reviewList");
+    const nameInput = document.getElementById("name");
+    const adventureInput = document.getElementById("adventure");
+    const duplicateWarning = document.getElementById("duplicateWarning");
+    let existingReviewIndex = -1;
+  
+    //Fetches the logged in username from the session storage
+    let loggedInUser = sessionStorage.getItem("loggedInUserName");
+    if (!loggedInUser) {
+      alert("Please log in first.");
+      window.location.href = "login.html";
+    }//If no loggedin username is found, It redirects to the login.html page
+  
+    nameInput.value = loggedInUser;
+    nameInput.readOnly = true;
+    //Once after fetching the username from the session storage it is autofilled in the name inputbox and is set to readonly
+  
+    
+    stars.forEach((star) => {
+      star.addEventListener("click", () => {
+        const value = star.getAttribute("data-value");
+        ratingInput.value = value;
+        stars.forEach((s) => s.classList.remove("active"));
+        for (let i = 0; i < value; i++) {
+          stars[i].classList.add("active");
+        }//on filling the stars the value is updated in the hidden input.
+      });
+    });
+  
+    function resetForm() {
+      document.getElementById("reviewForm").reset();
+      stars.forEach((s) => s.classList.remove("active"));
+      ratingInput.value = "0";
+      nameInput.value = loggedInUser;
+      duplicateWarning.style.display = "none";
+      existingReviewIndex = -1;
+    }
+  
+    //renders the filltered reviews to the reviewlist section.
+    //it is filtered by photos and only review
+    function loadReviews(showPhotosOnly = false, query = "") {
+      const reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+      reviewList.innerHTML = "";
+  
+      const filtered = reviews.filter(r => {
+        const match = r.adventure.toLowerCase().includes(query) || r.comment.toLowerCase().includes(query);
+        const hasPhoto = r.photo && r.photo.trim() !== "" && r.photo !== "undefined";
+        return showPhotosOnly ? hasPhoto && match : match;
+      });
+  
+      if (filtered.length === 0) {
+        reviewList.innerHTML = "<p style='text-align:center;'>No reviews found.</p>";
+        return;
+      }
+  
+      filtered.forEach((r) => {
+        const div = document.createElement("div");
+        div.className = "review-card";
+        div.innerHTML = `
+          <h4>${r.name} reviewed <em>${r.adventure}</em></h4>
+          <p>⭐ ${r.rating}/5</p>
+          <p>${r.comment}</p>
+        `;
+        if (r.photo && r.photo.trim() !== "" && r.photo !== "undefined") {
+          const img = document.createElement("img");
+          img.src = r.photo;
+          img.alt = "Adventure photo";
+          div.appendChild(img);
+        }
+        reviewList.appendChild(div);
+      });
+    }
+  
+    function showAllReviews() {
+      loadReviews(false, ""); //gives all the reviews
+    }
+  
+    function showPhotoGallery() {
+      loadReviews(true, ""); //gives reviews with images.
+    }
+  
+    //checks for duplicate review and updates it
+    function checkForDuplicateReview(adventureName)
+    //if theres a duplicate review found it shows a message saying that it will be updated
+    //also it will autofill the already entered review and the user can update it
+     {
+      const reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+      existingReviewIndex = reviews.findIndex(r => 
+        r.name === loggedInUser && 
+        r.adventure.toLowerCase() === adventureName.toLowerCase()
+      );// checks for the username and the adventure(with destination) and checks if there exist a duplicate review
+      
+      if (existingReviewIndex !== -1) {
+        duplicateWarning.style.display = "block";
+        
+        const existingReview = reviews[existingReviewIndex];
+        ratingInput.value = existingReview.rating;
+        stars.forEach((s, i) => {
+          if (i < existingReview.rating) {
+            s.classList.add("active");
+          } else {
+            s.classList.remove("active");
+          }
+        });
+        document.getElementById("comment").value = existingReview.comment;
+        return true;
+      } else {
+        duplicateWarning.style.display = "none";
+        return false;
+      }
+    }
+  
+    
+    adventureInput.addEventListener("input", function() {
+      if (this.value.trim() !== "") {
+        checkForDuplicateReview(this.value.trim());
+      } else {
+        duplicateWarning.style.display = "none";
+      }
+    });
+  
+    document.getElementById("reviewForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+  
+      if (ratingInput.value === "0") {
+        alert("Please select a rating!");
+        return;
+      }
+  
+      const adventureName = formData.get("adventure").trim();
+      const isDuplicate = checkForDuplicateReview(adventureName);
+  
+      const newReview = {
+        name: loggedInUser,
+        adventure: adventureName,
+        rating: formData.get("rating"),
+        comment: formData.get("comment"),
+        photo: ""
+      };
+  
+      const file = formData.get("photo");
+      if (file && file.size > 0) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          newReview.photo = event.target.result;
+          saveReview(newReview, isDuplicate);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        saveReview(newReview, isDuplicate);
+      }
+    });
+  
+    function saveReview(review, isDuplicate) {
+      const reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+      
+      if (isDuplicate && existingReviewIndex !== -1) {
+        
+        reviews[existingReviewIndex] = review;//if the review is a duplicate one it is updated
+        alert("Your review has been updated!");
+      } else {
+        
+        reviews.unshift(review);//else it is added as a new review
+        alert("Review submitted!");
+      }
+      
+      localStorage.setItem("reviews", JSON.stringify(reviews));
+      resetForm();
+      loadReviews();
+    }
+  
+    window.addEventListener("DOMContentLoaded", () => loadReviews());
+  </script>
+  
+</body>
+</html>

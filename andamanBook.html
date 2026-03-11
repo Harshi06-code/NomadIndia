@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Andaman Adventures</title>
+  
+  <style>
+    
+    :root {
+      --primary: #2a9d8f;
+      --secondary: #e9c46a;
+      --dark: #264653;
+      --accent: #f4a261;
+      --danger: #e76f51;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    header {
+      background: var(--dark);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    
+    .booking-details {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .booking-header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .provider-info {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .provider-card {
+      flex: 1;
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .pricing {
+      margin: 1.5rem 0;
+    }
+    
+    .price-option {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .price-option:hover {
+      background: #f0f8ff;
+    }
+    
+    .booking-form {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .btn:hover {
+      background: var(--dark);
+    }
+    
+    .back-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .back-btn:hover {
+      background: var(--danger);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Andaman Islands Adventure Booking</h1>
+    <p id="header-subtitle">Reserve your island adventure</p>
+  </header>
+
+  <div class="container">
+    <div class="container">
+        <div class="booking-details">
+          <div class="booking-header">
+            <h2 id="booking-title">Select an Activity</h2>
+            <p id="booking-location" class="location"></p>
+          </div>
+          
+          <div id="activity-content">
+            <div class="provider-info">
+              <div class="provider-card">
+                <h3>Adventure Provider</h3>
+                <p id="provider-name"></p>
+                <p id="provider-rating"></p>
+                <p id="provider-experience"></p>
+                <p id="provider-certification"></p>
+              </div>
+              
+              <div class="provider-card">
+                <h3>Activity Details</h3>
+                <p id="activity-name"></p>
+                <p id="activity-duration"></p>
+                <p id="activity-difficulty"></p>
+                <p id="activity-group"></p>
+              </div>
+            </div>
+            
+            <div class="pricing">
+              <h3>Pricing Options</h3>
+              <div id="price-options"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="booking-form">
+          <h2>Your Information</h2>
+          <form id="bookingForm">
+            <div class="form-group">
+              <label for="package">Select Package</label>
+              <select id="package" required>
+                <option value="">Choose an option</option>
+                <!-- Options will be added by JavaScript -->
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="participants">Number of Participants</label>
+              <input type="number" id="participants" min="1" max="20" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" required>
+            </div>
+            
+            <button type="submit" class="btn">Confirm Booking</button>
+          </form>
+        </div>
+    
+    <a href="andaman-islands.html" class="back-btn">← Back to Andaman Activities</a>
+  </div>
+
+  <script>
+    // Andaman Islands Activity Database
+    const andamanActivities = {
+      "Scuba Diving": {
+        provider: "Andaman Dive Center",
+        rating: "★★★★★ (4.9/5)",
+        experience: "10+ years experience",
+        certification: "PADI Certified",
+        duration: "3-4 hours",
+        difficulty: "Beginner to Advanced",
+        group: "2-6 people",
+        prices: [
+          { name: "Reef Discovery", value: "reef", desc: "Shallow reef dive for beginners", price: "₹4,500/person" },
+          { name: "Advanced Dive", value: "advanced", desc: "Deeper dive with more sites", price: "₹6,800/person" },
+          { name: "Private Dive", value: "private", desc: "Exclusive instructor", price: "₹12,000/session" }
+        ]
+      },
+      "Sea Walking": {
+        provider: "Aqua Adventures",
+        rating: "★★★★☆ (4.6/5)",
+        experience: "7+ years experience",
+        certification: "ISO Certified",
+        duration: "1.5 hours",
+        difficulty: "Easy",
+        group: "4-8 people",
+        prices: [
+          { name: "Standard Walk", value: "standard", desc: "30 mins underwater", price: "₹3,500/person" },
+          { name: "Photo Package", value: "photo", desc: "Includes professional photos", price: "₹4,800/person" }
+        ]
+      },
+      "Snorkeling": {
+        provider: "Coral Sea Tours",
+        rating: "★★★★☆ (4.4/5)",
+        experience: "5+ years experience",
+        certification: "Eco-Tourism Certified",
+        duration: "2-3 hours",
+        difficulty: "Easy",
+        group: "4-10 people",
+        prices: [
+          { name: "Half-Day Tour", value: "halfday", desc: "Visit 2-3 snorkeling spots", price: "₹2,200/person" },
+          { name: "Private Boat", value: "private", desc: "Exclusive boat for your group", price: "₹9,500/group" }
+        ]
+      },
+      "Glass Bottom Boat Ride": {
+        provider: "Andaman Watersports",
+        rating: "★★★☆☆ (3.9/5)",
+        experience: "3+ years experience",
+        certification: "Tourism Board Approved",
+        duration: "1 hour",
+        difficulty: "Very Easy",
+        group: "8-12 people",
+        prices: [
+          { name: "Standard Ride", value: "standard", desc: "30 mins viewing", price: "₹1,500/person" },
+          { name: "Sunset Cruise", value: "sunset", desc: "Evening tour with snacks", price: "₹2,800/person" }
+        ]
+      },
+      "Jet Skiing": {
+        provider: "Island Speed Adventures",
+        rating: "★★★★☆ (4.2/5)",
+        experience: "4+ years experience",
+        certification: "Water Sports Certified",
+        duration: "1-2 hours",
+        difficulty: "Moderate",
+        group: "1-2 people",
+        prices: [
+          { name: "15 Minute Ride", value: "short", desc: "Basic jet ski experience", price: "₹2,500" },
+          { name: "1 Hour Adventure", value: "long", desc: "Extended coastal ride", price: "₹6,500" }
+        ]
+      }
+    };
+
+    // Get activity from URL
+    const params = new URLSearchParams(window.location.search);
+    const activityName = params.get('activity');
+
+    // Load activity details
+    if (activityName && andamanActivities[activityName]) {
+      const activity = andamanActivities[activityName];
+      
+      // Update page content
+      document.getElementById('booking-title').textContent = activityName;
+      document.getElementById('booking-location').textContent = "Location: Andaman Islands";
+      document.getElementById('header-subtitle').textContent = `Book your ${activityName} adventure`;
+      
+      // Update provider info
+      document.getElementById('provider-name').textContent = activity.provider;
+      document.getElementById('provider-rating').textContent = activity.rating;
+      document.getElementById('provider-experience').textContent = activity.experience;
+      document.getElementById('provider-certification').textContent = activity.certification;
+      
+      // Update activity info
+      document.getElementById('activity-name').textContent = activityName;
+      document.getElementById('activity-duration').textContent = `Duration: ${activity.duration}`;
+      document.getElementById('activity-difficulty').textContent = `Difficulty: ${activity.difficulty}`;
+      document.getElementById('activity-group').textContent = `Group size: ${activity.group}`;
+      
+      // Update pricing options
+      const priceOptions = document.getElementById('price-options');
+      priceOptions.innerHTML = activity.prices.map(option => `
+        <div class="price-option">
+          <div>
+            <strong>${option.name}</strong>
+            <p>${option.desc}</p>
+          </div>
+          <span class="price">${option.price}</span>
+        </div>
+      `).join('');
+      
+      // Update package dropdown
+      const packageSelect = document.getElementById('package');
+      packageSelect.innerHTML = '<option value="">Choose an option</option>' + 
+        activity.prices.map(option => 
+          `<option value="${option.value}">${option.name} - ${option.price}</option>`
+        ).join('');
+    } else {
+      // If no valid activity specified, redirect back
+      window.location.href = 'andaman-islands.html';
+    }
+
+    
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        activity: activityName,
+        package: document.getElementById('package').value,
+        participants: document.getElementById('participants').value,
+        date: document.getElementById('date').value,
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value
+      };
+      
+      console.log("Booking submitted:", formData);
+      alert(`Thank you ${formData.name}! Your booking for ${activityName} has been received.`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>

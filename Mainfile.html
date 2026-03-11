@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NomadIndia</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="banner">
+        <video autoplay loop muted plays-inline>
+            <source src="images/Adventure.mp4" type="video/mp4">
+            </video>
+        <div class="navbar">            
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="Review.html">Reviews</a></li>
+                <li><a href="contact.html">Contact Us</a></li> 
+            </ul>
+        </div>
+        <div class="content">
+            <h1>EXPLORE INDIA'S ADVENTURES</h1>
+            <div>
+                <a href="adventures.html"><button type="button">Explore</button></a>
+            </div>
+        </div>
+    </div>
+    <div id="customMenu" class="custom-menu">
+        <ul>
+            <li onclick="window.location.href='adventures.html'">🌟 Discover Secret Adventure</li>
+        </ul>
+    </div>
+    <script>
+        const customMenu = document.getElementById("customMenu");
+    
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault(); // Prevent the default right-click menu
+            customMenu.style.top = `${e.pageY}px`;
+            customMenu.style.left = `${e.pageX}px`;
+            customMenu.style.display = "block";
+        });
+    
+        document.addEventListener("click", function () {
+            customMenu.style.display = "none";
+        });
+    </script>
+</body>
+</html>

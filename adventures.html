@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventures</title>
+    <link rel="stylesheet" href="advStyling.css">
+</head>
+<body>
+    <div class="container">
+        <div class="slide"> 
+            <div class="item" style="background-image: url(images/skydiving.jpg);">
+                <div class="content">
+                    <div class="name">Skydiving</div>
+                    <div class="des">Skydiving is the ultimate freefall thrill—leaping from the clouds into pure adrenaline! </div>
+                    <a href="skydivingInfo.html"><button>See More!</button></a>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/paragliding.jpg);">
+                <div class="content">
+                    <div class="name">Paragliding</div>
+                    <div class="des">Soaring through the skies, paragliding turns mountains into launchpads and dreams into flight! </div>
+                    <a href="paraglidingInfo.html"><button>See More!</button></a>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/hotAirBallon.jpg);">
+                <div class="content">
+                    <div class="name">Hot Air Ballooning</div>
+                    <div class="des">Hot air ballooning is a dreamy dance with the wind, floating gently above breathtaking landscapes. </div>
+                    <a href="hotairballooning.html"><button>See More!</button></a>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/whiteWaterRafting.jpeg);">
+                <div class="content">
+                    <div class="name">White Water Rafting</div>
+                    <div class="des">White water rafting is a wild rush through roaring rapids, where every wave is an adrenaline-pumping adventure! </div>
+                    <a href="whitewaterrafting.html"><button>See More!</button></a>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/kayaking.jpg);">
+                <div class="content">
+                    <div class="name">Kayaking</div>
+                    <div class="des">Kayaking is a sleek glide through nature’s veins, blending adventure with the rhythm of the water.</div>
+                    <a href="kayakingInfo.html"><button>See More!</button></a>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/scubaDiving.jpg);">
+                <div class="content">
+                    <div class="name">Scuba Diving</div>
+                    <div class="des">Scuba diving is a plunge into a magical underwater world, where every breath reveals vibrant marine wonders.</div>
+                    <a href="scubadivingInfo.html"><button>See More!</button></a>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/surfing.jpg);">
+                <div class="content">
+                    <div class="name">Surfing</div>
+                    <div class="des">Surfing is riding nature’s pulse, where every wave is a dance between balance and thrill.</div>
+                    <a href="surfingInfo.html"><button>See More!</button></a>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/bungee.jpeg);">
+                <div class="content">
+                    <div class="name">Bunjee Jumping</div>
+                    <div class="des">Bungee jumping is a heart-pounding leap into the void, where fear meets freedom in mid-air. </div>
+                    <a href="bunjeejumping.html"><button>See More!</button></a>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(images/kiteSurfing.jpg);">
+                <div class="content">
+                    <div class="name">Kite Surfing</div>
+                    <div class="des">Kite surfing is flying on water, where wind and waves team up for an electrifying ride. </div>
+                    <a href="kitesurfingInfo.html"><button>See More!</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="button">
+        <button class="prev">◀</button>
+        <button class="next">▶</button>
+        <a href="Mainfile.html" style="width: 100px;"><button>Back</button></a>
+    </div>
+
+    <script>
+        window.onload = function () {
+            const slide = document.querySelector('.slide');
+            const next = document.querySelector('.next');
+            const prev = document.querySelector('.prev');
+        
+            next.addEventListener('click', function () {
+                let items = document.querySelectorAll('.item');
+                slide.appendChild(items[0]); 
+            });
+        
+            prev.addEventListener('click', function () {
+                let items = document.querySelectorAll('.item');
+                slide.prepend(items[items.length - 1]); 
+            });
+        }
+        </script>
+        
+</body>
+</html>

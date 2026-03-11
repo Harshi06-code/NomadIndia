@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skydiving in India</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('images/sky.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #1f2937;
+    }
+
+    .content-wrapper {
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.5); /* Less opaque overlay */
+  min-height: 100vh;
+}
+
+
+    h1 {
+      color: #e11d48;
+      font-size: 38px;
+      margin-bottom: 30px;
+      text-align: center;
+      text-shadow: 1px 1px 2px #fff;
+    }
+
+    .locations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: linear-gradient(to bottom right, #ffffff, #f3f4f6);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.08);
+    }
+
+    .card-content {
+      flex-grow: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-content h3 {
+      margin: 0;
+      font-size: 21px;
+      color: #0f172a;
+    }
+
+    .card-content p {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #475569;
+    }
+
+    .back-link {
+      display: block;
+      width: fit-content;
+      margin: 50px auto 0;
+      text-align: center;
+      padding: 12px 28px;
+      border-radius: 25px;
+      background: linear-gradient(to right, #6b7280, #374151);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: linear-gradient(to right, #374151, #6b7280);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content-wrapper">
+    <h1>Skydiving Locations in India</h1>
+
+    <div class="locations">
+      <div class="card">
+        <img src="images/aamby.jpg" alt="Aamby Valley">
+        <div class="card-content">
+          <h3>Aamby Valley, Maharashtra</h3>
+          <p>Premium skydiving near Pune with lush scenery and luxury amenities.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/mysore.jpg" alt="Mysore">
+        <div class="card-content">
+          <h3>Mysore, Karnataka</h3>
+          <p>One of India's top drop zones with panoramic views of Mysore Palace and hills.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/pondicherry.jpg" alt="Pondicherry">
+        <div class="card-content">
+          <h3>Pondicherry</h3>
+          <p>Experience a coastal tandem jump over golden beaches and turquoise waters.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/dhana.jpg" alt="Dhana">
+        <div class="card-content">
+          <h3>Dhana, Madhya Pradesh</h3>
+          <p>A budget-friendly option perfect for first-time jumpers in central India.</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="gallery.html" class="back-link">← Back to Gallery</a>
+  </div>
+
+</body>
+</html>

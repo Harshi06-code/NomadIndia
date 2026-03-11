@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NomadIndia | Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #6c5ce7, #a29bfe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .welcome-screen {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 40px;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      transition: opacity 0.4s ease;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .welcome-screen h1 {
+      font-size: 36px;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .welcome-screen p {
+      font-size: 18px;
+      color: #f3f3f3;
+      margin-bottom: 20px;
+    }
+
+    .welcome-screen button {
+      background-color: #fff;
+      color: #6c5ce7;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .welcome-screen button:hover {
+      background-color: #ddd;
+    }
+
+    .form-container {
+      display: none;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+      transition: all 0.3s ease-in-out;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    h2 {
+      text-align: center;
+      color: #6c5ce7;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #6c5ce7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #5a4bd8;
+    }
+
+    .toggle {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .toggle span {
+      color: #6c5ce7;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Welcome Screen -->
+  <div class="welcome-screen" id="welcomeScreen">
+    <h1>Welcome to NomadIndia 🌄</h1>
+    <p>Your next adventure begins right here.</p>
+    <button onclick="showLogin()">Ready, Set...Roam!</button>
+  </div>
+
+  <!-- Auth Form -->
+  <div class="form-container" id="authForm">
+    <h2 id="formTitle">Login to NomadIndia</h2>
+
+    <div class="error" id="errorMsg"></div>
+
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <input type="text" id="name" placeholder="Full Name" style="display:none;" />
+
+    <button id="authBtn" onclick="handleAuth()">Login</button>
+
+    <div class="toggle">
+      <span id="toggleText">Don't have an account? Sign Up</span>
+    </div>
+  </div>
+
+  <script>
+    let isSignup = false;
+
+    const toggleText = document.getElementById("toggleText");
+    const formTitle = document.getElementById("formTitle");
+    const nameInput = document.getElementById("name");
+    const errorMsg = document.getElementById("errorMsg");
+
+    function showLogin() {
+      document.getElementById("welcomeScreen").style.display = "none";
+      document.getElementById("authForm").style.display = "block";
+    }
+
+    toggleText.addEventListener("click", () => {
+  isSignup = !isSignup;
+  const authBtn = document.getElementById("authBtn");
+
+  if (isSignup) {
+    formTitle.innerText = "Create Your NomadIndia Account";
+    toggleText.innerText = "Already have an account? Login";
+    nameInput.style.display = "block";
+    authBtn.innerText = "Sign Up";
+  } else {
+    formTitle.innerText = "Login to NomadIndia";
+    toggleText.innerText = "Don't have an account? Sign Up";
+    nameInput.style.display = "none";
+    authBtn.innerText = "Login";
+  }
+
+  errorMsg.innerText = "";
+});
+
+
+function handleAuth() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const name = document.getElementById("name").value.trim();
+
+  if (!email || !password || (isSignup && !name)) {
+    errorMsg.innerText = "Please fill in all required fields.";
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+  if (isSignup) {
+    const existingUser = users.find((u) => u.email === email);
+    if (existingUser) {
+      errorMsg.innerText = "Account already exists. Please log in.";
+      return;
+    }
+    users.push({ email, password, name });
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Account created! You can now log in.");
+    toggleText.click();
+  } else {
+    const user = users.find((u) => u.email === email && u.password === password);
+    if (!user) {
+      errorMsg.innerText = "Invalid credentials. Try again.";
+      return;
+    }
+
+    //Save logged-in user info to sessionStorage
+    sessionStorage.setItem("loggedInUser", user.email);
+    sessionStorage.setItem("loggedInUserName", user.name);
+
+    window.location.href = "Mainfile.html"; 
+  }
+}
+</script>
+
+</body>
+</html>

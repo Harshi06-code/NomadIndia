@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Bir Billing Adventures</title>
+  <style>
+    :root {
+      --primary: #2c7a7b;
+      --secondary: #f6e05e;
+      --dark: #1a202c;
+      --accent: #f56565;
+      --light: #edf2f7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--dark);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .booking-details,
+    .booking-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .provider-info {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .provider-card {
+      flex: 1;
+      padding: 1rem;
+      background-color: var(--light);
+      border-radius: 8px;
+    }
+
+    .pricing .price-option {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      padding: 1rem 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--dark);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      background-color: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+    }
+
+    .back-btn:hover {
+      background-color: #c53030;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bir Billing Adventure Booking</h1>
+    <p id="header-subtitle">Secure your thrill-packed experience</p>
+  </header>
+
+  <div class="container">
+    <div class="booking-details">
+      <h2 id="booking-title">Choose Activity</h2>
+      <p id="booking-location"></p>
+
+      <div class="provider-info">
+        <div class="provider-card">
+          <h3>Provider Info</h3>
+          <p id="provider-name"></p>
+          <p id="provider-rating"></p>
+          <p id="provider-experience"></p>
+          <p id="provider-certification"></p>
+        </div>
+        <div class="provider-card">
+          <h3>Activity Details</h3>
+          <p id="activity-name"></p>
+          <p id="activity-duration"></p>
+          <p id="activity-difficulty"></p>
+          <p id="activity-group"></p>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <h3>Pricing Options</h3>
+        <div id="price-options"></div>
+      </div>
+    </div>
+
+    <div class="booking-form">
+      <h2>Your Details</h2>
+      <form id="bookingForm">
+        <div class="form-group">
+          <label for="package">Select Package</label>
+          <select id="package" required></select>
+        </div>
+        <div class="form-group">
+          <label for="participants">Participants</label>
+          <input type="number" id="participants" min="1" max="20" required>
+        </div>
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" required>
+        </div>
+        <button type="submit" class="btn">Confirm Booking</button>
+      </form>
+    </div>
+
+    <a href="bir-billing-himachal-pradesh.html" class="back-btn">← Back to Bir Billing</a>
+  </div>
+
+  <script>
+    const birActivities = {
+      "Paragliding": {
+        provider: "SkyHigh Paragliders",
+        rating: "★★★★★ (4.9/5)",
+        experience: "10+ years",
+        certification: "Licensed by Himachal Aero Club",
+        duration: "30-45 mins flight",
+        difficulty: "Medium",
+        group: "Solo or Tandem",
+        prices: [
+          { name: "Standard Flight", value: "standard", desc: "10-15 mins", price: "₹2,500" },
+          { name: "Extended Flight", value: "extended", desc: "25-30 mins", price: "₹3,500" },
+          { name: "Premium Flight", value: "premium", desc: "Includes video + photos", price: "₹4,500" }
+        ]
+      },
+      "Trekking": {
+        provider: "Himalayan Foot Trails",
+        rating: "★★★★☆ (4.6/5)",
+        experience: "6+ years",
+        certification: "Certified Mountain Guides",
+        duration: "1-3 days",
+        difficulty: "Moderate",
+        group: "4-10 people",
+        prices: [
+          { name: "Day Hike", value: "day", desc: "7km round trail", price: "₹1,000/person" },
+          { name: "Weekend Trek", value: "weekend", desc: "Overnight with camping", price: "₹2,800/person" }
+        ]
+      },
+      "Camping": {
+        provider: "SkyCamp Adventures",
+        rating: "★★★★☆ (4.7/5)",
+        experience: "8+ years",
+        certification: "Eco-Friendly Certified",
+        duration: "1 Night / 2 Days",
+        difficulty: "Easy",
+        group: "2-8 people",
+        prices: [
+          { name: "Standard Camp", value: "standard", desc: "Meals included", price: "₹1,800/person" },
+          { name: "Luxury Camp", value: "luxury", desc: "Deluxe tent & bonfire", price: "₹2,800/person" }
+        ]
+      },
+      "Mountain biking": {
+        provider: "Biker’s Valley Tours",
+        rating: "★★★★☆ (4.4/5)",
+        experience: "5+ years",
+        certification: "Mountain Bike Association of India",
+        duration: "2-4 hours",
+        difficulty: "High",
+        group: "2-6 people",
+        prices: [
+          { name: "Trail Ride", value: "trail", desc: "Scenic forest path", price: "₹1,500" },
+          { name: "Downhill Madness", value: "downhill", desc: "High-speed adventure", price: "₹2,500" }
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const activityName = params.get('activity');
+
+    if (activityName && birActivities[activityName]) {
+      const activity = birActivities[activityName];
+
+      document.getElementById('booking-title').textContent = activityName;
+      document.getElementById('booking-location').textContent = "Location: Bir Billing, Himachal Pradesh";
+      document.getElementById('header-subtitle').textContent = `Book your ${activityName} adventure`;
+
+      document.getElementById('provider-name').textContent = activity.provider;
+      document.getElementById('provider-rating').textContent = activity.rating;
+      document.getElementById('provider-experience').textContent = activity.experience;
+      document.getElementById('provider-certification').textContent = activity.certification;
+
+      document.getElementById('activity-name').textContent = activityName;
+      document.getElementById('activity-duration').textContent = `Duration: ${activity.duration}`;
+      document.getElementById('activity-difficulty').textContent = `Difficulty: ${activity.difficulty}`;
+      document.getElementById('activity-group').textContent = `Group: ${activity.group}`;
+
+      const priceOptions = document.getElementById('price-options');
+      priceOptions.innerHTML = activity.prices.map(option => `
+        <div class="price-option">
+          <div><strong>${option.name}</strong><p>${option.desc}</p></div>
+          <span>${option.price}</span>
+        </div>
+      `).join('');
+
+      const select = document.getElementById('package');
+      select.innerHTML = '<option value="">Choose an option</option>' +
+        activity.prices.map(opt => 
+          `<option value="${opt.value}">${opt.name} - ${opt.price}</option>`
+        ).join('');
+    } else {
+      window.location.href = "bir-billing-himachal-pradesh.html";
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      alert(`Thanks ${name}! Your booking for ${activityName} is confirmed.`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Hampi Adventures</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fa;
+      margin: 0;
+      padding: 0;
+      color: #2c3e50;
+    }
+
+    header {
+      background-color: #34495e;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .details p {
+      margin: 0.5rem 0;
+    }
+
+    .pricing {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #f1f8f6;
+      border-left: 4px solid #27ae60;
+      border-radius: 8px;
+    }
+
+    .form-group {
+      margin-top: 1.2rem;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      margin-top: 1.5rem;
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 0.9rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: #219150;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      background-color: #e74c3c;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 6px;
+    }
+
+    .back-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hampi Adventure Booking</h1>
+    <p id="header-subtitle">Choose your activity</p>
+  </header>
+
+  <div class="container">
+    <h2 id="activity-title">Booking for: </h2>
+
+    <div class="details" id="activity-details">
+      <!-- Dynamic activity info here -->
+    </div>
+
+    <div class="pricing" id="pricing-section">
+      <!-- Dynamic pricing options -->
+    </div>
+
+    <form id="bookingForm">
+      <div class="form-group">
+        <label for="participants">Participants</label>
+        <input type="number" id="participants" min="1" max="20" required />
+      </div>
+      <div class="form-group">
+        <label for="date">Preferred Date</label>
+        <input type="date" id="date" required />
+      </div>
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" required />
+      </div>
+      <button type="submit" class="btn">Confirm Booking</button>
+    </form>
+
+    <a href="hampi-karnataka.html" class="back-btn">← Back to Hampi</a>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const activity = params.get('activity') || 'Adventure';
+
+    const activities = {
+      "Bouldering": {
+        provider: "Granite Trails Hampi",
+        rating: "4.9/5",
+        experience: "Beginner to Pro",
+        duration: "3-5 hours",
+        difficulty: "Moderate to Hard",
+        groupSize: "2-6 people",
+        certification: "Safety briefing provided",
+        pricing: ["₹1200 - Group Tour", "₹2500 - Private Session", "₹4500 - Full Day Guided Climb"]
+      },
+      "Coracle Ride on Tungabhadra": {
+        provider: "Tungabhadra Boat Services",
+        rating: "4.7/5",
+        experience: "Family-friendly",
+        duration: "45 mins - 1 hour",
+        difficulty: "Easy",
+        groupSize: "4-8 per coracle",
+        certification: "Local boatmen certified",
+        pricing: ["₹500 - Short Loop", "₹800 - Scenic Loop", "₹1200 - Sunset Ride"]
+      },
+      "Cycling Tours": {
+        provider: "Hampi Pedal Tours",
+        rating: "4.8/5",
+        experience: "Historical & Leisure Ride",
+        duration: "3 hours",
+        difficulty: "Easy to Moderate",
+        groupSize: "Up to 10 per guide",
+        certification: "Local guide included",
+        pricing: ["₹700 - Basic Tour", "₹1000 - Temple Circuit", "₹1500 - Full Day Trail"]
+      },
+      "Heritage Trekking": {
+        provider: "Explore Hampi Treks",
+        rating: "5/5",
+        experience: "Cultural & Scenic",
+        duration: "4-6 hours",
+        difficulty: "Moderate",
+        groupSize: "4-12 trekkers",
+        certification: "Guided by ASI experts",
+        pricing: ["₹900 - Sunrise Trek", "₹1300 - Hilltop Ruins", "₹1700 - Extended Trail"]
+      },
+      "Nature Camping": {
+        provider: "Hampi Nature Escapes",
+        rating: "4.6/5",
+        experience: "Camping with bonfire",
+        duration: "Overnight",
+        difficulty: "Easy",
+        groupSize: "2-10 people",
+        certification: "Tents & safety certified",
+        pricing: ["₹1500 - Basic Tent Stay", "₹2000 - Deluxe Camp", "₹2500 - Riverside Campfire"]
+      }
+    };
+
+    document.getElementById("activity-title").textContent = `Booking for: ${activity}`;
+    document.getElementById("header-subtitle").textContent = `Book your ${activity} experience`;
+
+    const info = activities[activity];
+
+    if (info) {
+      const detailsHTML = `
+        <p><strong>Provider:</strong> ${info.provider}</p>
+        <p><strong>Rating:</strong> ${info.rating}</p>
+        <p><strong>Experience Level:</strong> ${info.experience}</p>
+        <p><strong>Duration:</strong> ${info.duration}</p>
+        <p><strong>Difficulty:</strong> ${info.difficulty}</p>
+        <p><strong>Group Size:</strong> ${info.groupSize}</p>
+        <p><strong>Certification:</strong> ${info.certification}</p>
+      `;
+      document.getElementById("activity-details").innerHTML = detailsHTML;
+
+      const pricingHTML = `<strong>Pricing Options:</strong><ul>${
+        info.pricing.map(p => `<li>${p}</li>`).join("")
+      }</ul>`;
+      document.getElementById("pricing-section").innerHTML = pricingHTML;
+    }
+
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      alert(`Thanks ${name}! Your booking for ${activity} is confirmed.`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nomad India | Adventure Gallery</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('images/beach.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #1f2937;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(to bottom right, rgba(255, 236, 210, 0.82), rgba(252, 182, 159, 0.82));
+      z-index: -1;
+    }
+
+    header {
+      background-color: #ffffffcc;
+      padding: 20px 40px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-size: 36px;
+      color: #e63946;
+      text-shadow: 1px 1px 0 #ffd6d6;
+    }
+
+    .gallery-container {
+      max-width: 1300px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .gallery-title {
+      font-size: 40px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #14213d;
+    }
+
+    .filter-buttons {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .filter-buttons button {
+      margin: 8px;
+      padding: 12px 26px;
+      border: none;
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-buttons button:nth-child(1) {
+      background: linear-gradient(to right, #facc15, #fbbf24);
+      color: #1e1e1e;
+    }
+
+    .filter-buttons button:nth-child(2) {
+      background: linear-gradient(to right, #38bdf8, #0ea5e9);
+    }
+
+    .filter-buttons button:nth-child(3) {
+      background: linear-gradient(to right, #3b82f6, #1d4ed8);
+    }
+
+    .filter-buttons button:nth-child(4) {
+      background: linear-gradient(to right, #10b981, #059669);
+    }
+
+    .filter-buttons button:hover,
+    .filter-buttons button.active {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      opacity: 0.95;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 16px;
+      background: linear-gradient(to bottom right, #ffffff, #fef9c3);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      transition: transform 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .overlay {
+      padding: 16px;
+    }
+
+    .overlay h3 {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #e11d48;
+    }
+
+    .overlay p {
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin: 50px auto 30px;
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 20px;
+      background: linear-gradient(to right, #6b7280, #4b5563);
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #4b5563, #6b7280);
+    }
+
+    @media (max-width: 500px) {
+      .gallery-title {
+        font-size: 28px;
+      }
+
+      .filter-buttons button {
+        padding: 10px 18px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>NomadIndia</h1>
+  </header>
+
+  <div class="gallery-container">
+    <h2 class="gallery-title">Adventure Gallery</h2>
+
+    <div class="filter-buttons">
+      <button class="active" onclick="filterGallery(event, 'all')">All</button>
+      <button onclick="filterGallery(event, 'air')">Air</button>
+      <button onclick="filterGallery(event, 'water')">Water</button>
+      <button onclick="filterGallery(event, 'land')">Land</button>
+    </div>
+
+    <div class="gallery-grid">
+      <!-- AIR -->
+      <a href="skydiving.html" class="gallery-item" data-type="air">
+        <img src="images/skydiving.jpg" alt="Skydiving">
+        <div class="overlay">
+          <h3>Skydiving</h3>
+          <p>Aamby Valley & Mysore offer thrilling dives.</p>
+        </div>
+      </a>
+
+      <a href="paragliding.html" class="gallery-item" data-type="air">
+        <img src="images/paragliding.jpg" alt="Paragliding">
+        <div class="overlay">
+          <h3>Paragliding</h3>
+          <p>Glide over the hills of Bir Billing.</p>
+        </div>
+      </a>
+
+      <a href="hotairballoon.html" class="gallery-item" data-type="air">
+        <img src="images/hotAirBallon.jpg" alt="Hot Air Balloon">
+        <div class="overlay">
+          <h3>Hot Air Balloon</h3>
+          <p>Soar above Jaipur or Lonavala in style.</p>
+        </div>
+      </a>
+
+      <a href="helicopter.html" class="gallery-item" data-type="air">
+        <img src="images/helicopter.jpg" alt="Helicopter Ride">
+        <div class="overlay">
+          <h3>Helicopter Ride</h3>
+          <p>Explore Manali or Mumbai from the skies.</p>
+        </div>
+      </a>
+
+      <!-- WATER -->
+      <a href="scubadiving.html" class="gallery-item" data-type="water">
+        <img src="images/scubaDiving.jpg" alt="Scuba Diving">
+        <div class="overlay">
+          <h3>Scuba Diving</h3>
+          <p>Discover coral beauty in the Andamans.</p>
+        </div>
+      </a>
+
+      <a href="rafting.html" class="gallery-item" data-type="water">
+        <img src="images/rafting.jpg" alt="Rafting">
+        <div class="overlay">
+          <h3>Rafting</h3>
+          <p>Conquer white waters in Rishikesh.</p>
+        </div>
+      </a>
+
+      <a href="kayaking.html" class="gallery-item" data-type="water">
+        <img src="images/kayaking.jpg" alt="Kayaking">
+        <div class="overlay">
+          <h3>Kayaking</h3>
+          <p>Navigate Kerala or Zanskar’s rivers.</p>
+        </div>
+      </a>
+
+      <a href="surfing.html" class="gallery-item" data-type="water">
+        <img src="images/surfing.jpg" alt="Surfing">
+        <div class="overlay">
+          <h3>Surfing</h3>
+          <p>Ride waves at Varkala or Goa beaches.</p>
+        </div>
+      </a>
+
+      <a href="kitesurfing.html" class="gallery-item" data-type="water">
+        <img src="images/kitesurfing.jpg" alt="Kite Surfing">
+        <div class="overlay">
+          <h3>Kite Surfing</h3>
+          <p>Harness wind power in Rameswaram.</p>
+        </div>
+      </a>
+
+      <a href="snorkeling.html" class="gallery-item" data-type="water">
+        <img src="images/snorkeling.jpg" alt="Snorkeling">
+        <div class="overlay">
+          <h3>Snorkeling</h3>
+          <p>Snorkel through Lakshadweep’s reefs.</p>
+        </div>
+      </a>
+
+      <!-- LAND -->
+      <a href="bunjee.html" class="gallery-item" data-type="land">
+        <img src="images/bungee.jpeg" alt="Bungee Jumping">
+        <div class="overlay">
+          <h3>Bungee Jumping</h3>
+          <p>Leap into action at Rishikesh!</p>
+        </div>
+      </a>
+
+      <a href="trekking.html" class="gallery-item" data-type="land">
+        <img src="images/trek.jpeg" alt="Trekking">
+        <div class="overlay">
+          <h3>Trekking</h3>
+          <p>Explore the scenic Hampta Pass, Roopkund.</p>
+        </div>
+      </a>
+
+      <a href="camping.html" class="gallery-item" data-type="land">
+        <img src="images/camp.jpg" alt="Camping">
+        <div class="overlay">
+          <h3>Camping</h3>
+          <p>Camp under stars in Spiti or Jaisalmer.</p>
+        </div>
+      </a>
+
+      <a href="atv.html" class="gallery-item" data-type="land">
+        <img src="images/atv.jpg" alt="ATV Ride">
+        <div class="overlay">
+          <h3>ATV Ride</h3>
+          <p>Roar across the dunes of Rajasthan.</p>
+        </div>
+      </a>
+
+      <a href="safari.html" class="gallery-item" data-type="land">
+        <img src="images/safari.jpg" alt="Wildlife Safari">
+        <div class="overlay">
+          <h3>Wildlife Safari</h3>
+          <p>Discover tigers in Jim Corbett & Bandhavgarh.</p>
+        </div>
+      </a>
+    </div>
+
+    <center><a href="Mainfile.html" class="back-button">← Back to Main page</a></center>
+  </div>
+
+  <script>
+    function filterGallery(event, type) {
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach(item => {
+        const itemType = item.getAttribute('data-type');
+        item.style.display = (type === 'all' || itemType === type) ? 'block' : 'none';
+      });
+
+      const buttons = document.querySelectorAll('.filter-buttons button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

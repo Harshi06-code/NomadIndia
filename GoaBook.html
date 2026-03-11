@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Goa Adventures</title>
+  <style>
+    :root {
+      --primary: #2c7a7b;
+      --secondary: #f6e05e;
+      --dark: #1a202c;
+      --accent: #f56565;
+      --light: #edf2f7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #006994;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .booking-details,
+    .booking-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .provider-info {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .provider-card {
+      flex: 1;
+      padding: 1rem;
+      background-color: var(--light);
+      border-radius: 8px;
+    }
+
+    .pricing .price-option {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      padding: 1rem 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--dark);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      background-color: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+    }
+
+    .back-btn:hover {
+      background-color: #c53030;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Goa Adventure Booking</h1>
+    <p id="header-subtitle">Secure your beachside thrill</p>
+  </header>
+
+  <div class="container">
+    <div class="booking-details">
+      <h2 id="booking-title">Choose Activity</h2>
+      <p id="booking-location"></p>
+
+      <div class="provider-info">
+        <div class="provider-card">
+          <h3>Provider Info</h3>
+          <p id="provider-name"></p>
+          <p id="provider-rating"></p>
+          <p id="provider-experience"></p>
+          <p id="provider-certification"></p>
+        </div>
+        <div class="provider-card">
+          <h3>Activity Details</h3>
+          <p id="activity-name"></p>
+          <p id="activity-duration"></p>
+          <p id="activity-difficulty"></p>
+          <p id="activity-group"></p>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <h3>Pricing Options</h3>
+        <div id="price-options"></div>
+      </div>
+    </div>
+
+    <div class="booking-form">
+      <h2>Your Details</h2>
+      <form id="bookingForm">
+        <div class="form-group">
+          <label for="package">Select Package</label>
+          <select id="package" required></select>
+        </div>
+        <div class="form-group">
+          <label for="participants">Participants</label>
+          <input type="number" id="participants" min="1" max="20" required>
+        </div>
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" required>
+        </div>
+        <button type="submit" class="btn">Confirm Booking</button>
+      </form>
+    </div>
+
+    <a href="goa.html" class="back-btn">← Back to Goa</a>
+  </div>
+
+  <script>
+    const goaActivities = {
+      "Scuba Diving": {
+        provider: "Aqua Dive Goa",
+        rating: "★★★★☆ (4.7/5)",
+        experience: "9+ years",
+        certification: "PADI Certified",
+        duration: "1 hour dive + training",
+        difficulty: "Moderate",
+        group: "2-6 people",
+        prices: [
+          { name: "Standard Dive", value: "standard", desc: "Grande Island", price: "₹3,000" },
+          { name: "Premium Dive", value: "premium", desc: "Malvan + video", price: "₹4,500" }
+        ]
+      },
+      "Parasailing": {
+        provider: "SkyRiders Goa",
+        rating: "★★★★★ (4.9/5)",
+        experience: "5+ years",
+        certification: "Coastal Safety Approved",
+        duration: "10–15 minutes",
+        difficulty: "Easy",
+        group: "Solo/Tandem",
+        prices: [
+          { name: "Beach Ride", value: "beach", desc: "Candolim Beach", price: "₹1,200" },
+          { name: "High Ride", value: "high", desc: "GoPro footage", price: "₹1,800" }
+        ]
+      },
+      "Jet Skiing": {
+        provider: "WaveRush Rentals",
+        rating: "★★★★☆ (4.6/5)",
+        experience: "6+ years",
+        certification: "Water Sports Authority Certified",
+        duration: "10 mins",
+        difficulty: "Medium",
+        group: "1-2 people",
+        prices: [
+          { name: "Standard Ride", value: "standard", desc: "Palolem Beach", price: "₹800" },
+          { name: "Extended Thrill", value: "extended", desc: "15 mins at Anjuna", price: "₹1,200" }
+        ]
+      },
+      "Kayaking": {
+        provider: "Goa Paddle Club",
+        rating: "★★★★☆ (4.5/5)",
+        experience: "7+ years",
+        certification: "Eco Certified Guides",
+        duration: "1–2 hours",
+        difficulty: "Easy",
+        group: "2-10 people",
+        prices: [
+          { name: "Backwater Trail", value: "backwater", desc: "Chapora River", price: "₹900" },
+          { name: "Sunset Paddle", value: "sunset", desc: "With guide", price: "₹1,200" }
+        ]
+      },
+      "Dolphin Tours": {
+        provider: "Goa Sea Explorers",
+        rating: "★★★★☆ (4.8/5)",
+        experience: "10+ years",
+        certification: "Marine Eco Tour Certified",
+        duration: "1 hour",
+        difficulty: "Easy",
+        group: "4-10 people",
+        prices: [
+          { name: "Morning Tour", value: "morning", desc: "Sinquerim start", price: "₹600" },
+          { name: "Afternoon Ride", value: "afternoon", desc: "With snacks", price: "₹800" }
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const activityName = params.get('activity');
+
+    if (activityName && goaActivities[activityName]) {
+      const activity = goaActivities[activityName];
+
+      document.getElementById('booking-title').textContent = activityName;
+      document.getElementById('booking-location').textContent = "Location: Goa";
+      document.getElementById('header-subtitle').textContent = `Book your ${activityName} experience`;
+
+      document.getElementById('provider-name').textContent = activity.provider;
+      document.getElementById('provider-rating').textContent = activity.rating;
+      document.getElementById('provider-experience').textContent = activity.experience;
+      document.getElementById('provider-certification').textContent = activity.certification;
+
+      document.getElementById('activity-name').textContent = activityName;
+      document.getElementById('activity-duration').textContent = `Duration: ${activity.duration}`;
+      document.getElementById('activity-difficulty').textContent = `Difficulty: ${activity.difficulty}`;
+      document.getElementById('activity-group').textContent = `Group: ${activity.group}`;
+
+      const priceOptions = document.getElementById('price-options');
+      priceOptions.innerHTML = activity.prices.map(option => `
+        <div class="price-option">
+          <div><strong>${option.name}</strong><p>${option.desc}</p></div>
+          <span>${option.price}</span>
+        </div>
+      `).join('');
+
+      const select = document.getElementById('package');
+      select.innerHTML = '<option value="">Choose an option</option>' +
+        activity.prices.map(opt => 
+          `<option value="${opt.value}">${opt.name} - ${opt.price}</option>`
+        ).join('');
+    } else {
+      window.location.href = "goa.html";
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      alert(`Thanks ${name}! Your booking for ${activityName} is confirmed.`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>

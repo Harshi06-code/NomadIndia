@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Manali Adventures</title>
+  <style>
+    :root {
+      --primary: #2c7a7b;
+      --secondary: #f6e05e;
+      --dark: #1a202c;
+      --accent: #f56565;
+      --light: #edf2f7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--dark);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .booking-details,
+    .booking-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .provider-info {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .provider-card {
+      flex: 1;
+      padding: 1rem;
+      background-color: var(--light);
+      border-radius: 8px;
+    }
+
+    .pricing .price-option {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      padding: 1rem 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--dark);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      background-color: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+    }
+
+    .back-btn:hover {
+      background-color: #c53030;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Manali Adventure Booking</h1>
+    <p id="header-subtitle">Secure your thrill-packed experience</p>
+  </header>
+
+  <div class="container">
+    <div class="booking-details">
+      <h2 id="booking-title">Choose Activity</h2>
+      <p id="booking-location"></p>
+
+      <div class="provider-info">
+        <div class="provider-card">
+          <h3>Provider Info</h3>
+          <p id="provider-name"></p>
+          <p id="provider-rating"></p>
+          <p id="provider-experience"></p>
+          <p id="provider-certification"></p>
+        </div>
+        <div class="provider-card">
+          <h3>Activity Details</h3>
+          <p id="activity-name"></p>
+          <p id="activity-duration"></p>
+          <p id="activity-difficulty"></p>
+          <p id="activity-group"></p>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <h3>Pricing Options</h3>
+        <div id="price-options"></div>
+      </div>
+    </div>
+
+    <div class="booking-form">
+      <h2>Your Details</h2>
+      <form id="bookingForm">
+        <div class="form-group">
+          <label for="package">Select Package</label>
+          <select id="package" required></select>
+        </div>
+        <div class="form-group">
+          <label for="participants">Participants</label>
+          <input type="number" id="participants" min="1" max="20" required>
+        </div>
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" required>
+        </div>
+        <button type="submit" class="btn">Confirm Booking</button>
+      </form>
+    </div>
+
+    <a href="manali-himachal-pradesh.html" class="back-btn">← Back to Manali</a>
+  </div>
+
+  <script>
+    const manaliActivities = {
+      "Skiing": {
+        provider: "SnowRide Experts",
+        rating: "★★★★☆ (4.5/5)",
+        experience: "12+ years",
+        certification: "Govt. Ski School Certified",
+        duration: "1-2 hours",
+        difficulty: "Moderate",
+        group: "2-6 people",
+        prices: [
+          { name: "Basic Session", value: "basic", desc: "With instructor", price: "₹2,000" },
+          { name: "Advanced Ride", value: "advanced", desc: "Free slope practice", price: "₹3,000" }
+        ]
+      },
+      "Trekking": {
+        provider: "Himalayan Trekkers",
+        rating: "★★★★☆ (4.6/5)",
+        experience: "8+ years",
+        certification: "Certified Trek Leaders",
+        duration: "1-3 days",
+        difficulty: "Easy to Moderate",
+        group: "4-12 people",
+        prices: [
+          { name: "Hampta Day Trek", value: "hampta", desc: "7 km round trip", price: "₹1,200/person" },
+          { name: "Beas Kund Trek", value: "beas", desc: "2 day camping trek", price: "₹3,000/person" }
+        ]
+      },
+      "Paragliding": {
+        provider: "FlyHigh Manali",
+        rating: "★★★★★ (4.9/5)",
+        experience: "10+ years",
+        certification: "DGCA Certified Pilots",
+        duration: "15–20 minutes",
+        difficulty: "Medium",
+        group: "Solo/Tandem",
+        prices: [
+          { name: "Short Flight", value: "short", desc: "10 mins scenic ride", price: "₹2,500" },
+          { name: "Long Flight", value: "long", desc: "20 mins + GoPro footage", price: "₹4,000" }
+        ]
+      },
+      "River rafting": {
+        provider: "Beas Rapids Club",
+        rating: "★★★★☆ (4.8/5)",
+        experience: "7+ years",
+        certification: "Adventure Tourism Certified",
+        duration: "30-45 mins",
+        difficulty: "Moderate",
+        group: "6-8 people",
+        prices: [
+          { name: "Basic Rapids", value: "basic", desc: "Grade II", price: "₹1,200/person" },
+          { name: "Extended Rapids", value: "extended", desc: "Grade III stretch", price: "₹1,800/person" }
+        ]
+      },
+      "Mountain biking": {
+        provider: "Manali Trail Bikers",
+        rating: "★★★★☆ (4.7/5)",
+        experience: "6+ years",
+        certification: "IMBA Certified",
+        duration: "2-3 hours",
+        difficulty: "High",
+        group: "2-6 people",
+        prices: [
+          { name: "Local Trail Ride", value: "local", desc: "Jogini route", price: "₹1,400" },
+          { name: "Leh Pre-Tour", value: "leh", desc: "Pre-Leh intro ride", price: "₹2,200" }
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const activityName = params.get('activity');
+
+    if (activityName && manaliActivities[activityName]) {
+      const activity = manaliActivities[activityName];
+
+      document.getElementById('booking-title').textContent = activityName;
+      document.getElementById('booking-location').textContent = "Location: Manali, Himachal Pradesh";
+      document.getElementById('header-subtitle').textContent = `Book your ${activityName} adventure`;
+
+      document.getElementById('provider-name').textContent = activity.provider;
+      document.getElementById('provider-rating').textContent = activity.rating;
+      document.getElementById('provider-experience').textContent = activity.experience;
+      document.getElementById('provider-certification').textContent = activity.certification;
+
+      document.getElementById('activity-name').textContent = activityName;
+      document.getElementById('activity-duration').textContent = `Duration: ${activity.duration}`;
+      document.getElementById('activity-difficulty').textContent = `Difficulty: ${activity.difficulty}`;
+      document.getElementById('activity-group').textContent = `Group: ${activity.group}`;
+
+      const priceOptions = document.getElementById('price-options');
+      priceOptions.innerHTML = activity.prices.map(option => `
+        <div class="price-option">
+          <div><strong>${option.name}</strong><p>${option.desc}</p></div>
+          <span>${option.price}</span>
+        </div>
+      `).join('');
+
+      const select = document.getElementById('package');
+      select.innerHTML = '<option value="">Choose an option</option>' +
+        activity.prices.map(opt => 
+          `<option value="${opt.value}">${opt.name} - ${opt.price}</option>`
+        ).join('');
+    } else {
+      window.location.href = "manali-himachal-pradesh.html";
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      alert(`Thanks ${name}! Your booking for ${activityName} is confirmed.`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>

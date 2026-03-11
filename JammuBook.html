@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Jammu & Kashmir Adventures</title>
+  <style>
+    :root {
+      --primary: #1e6091;
+      --secondary: #a9d6e5;
+      --dark: #14213d;
+      --accent: #3a86ff;
+      --danger: #ef476f;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #f0f8ff;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    header {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .booking-details,
+    .booking-form {
+      background: white;
+      margin-bottom: 2rem;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .booking-header {
+      border-bottom: 2px solid var(--primary);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+    }
+
+    .provider-info {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .provider-card {
+      flex: 1;
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .pricing {
+      margin-top: 1.5rem;
+    }
+
+    .price-option {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .price-option:hover {
+      background: #e0f7ff;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--dark);
+    }
+
+    .back-btn {
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+
+    .back-btn:hover {
+      background: var(--danger);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Jammu & Kashmir Adventure Booking</h1>
+    <p id="header-subtitle">Choose your Himalayan thrill!</p>
+  </header>
+
+  <div class="container">
+    <div class="booking-details">
+      <div class="booking-header">
+        <h2 id="booking-title">Select an Activity</h2>
+        <p id="booking-location"></p>
+      </div>
+
+      <div class="provider-info">
+        <div class="provider-card">
+          <h3>Adventure Provider</h3>
+          <p id="provider-name"></p>
+          <p id="provider-rating"></p>
+          <p id="provider-experience"></p>
+          <p id="provider-certification"></p>
+        </div>
+        <div class="provider-card">
+          <h3>Activity Details</h3>
+          <p id="activity-name"></p>
+          <p id="activity-duration"></p>
+          <p id="activity-difficulty"></p>
+          <p id="activity-group"></p>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <h3>Pricing Options</h3>
+        <div id="price-options"></div>
+      </div>
+    </div>
+
+    <div class="booking-form">
+      <h2>Your Information</h2>
+      <form id="bookingForm">
+        <div class="form-group">
+          <label for="package">Select Package</label>
+          <select id="package" required></select>
+        </div>
+
+        <div class="form-group">
+          <label for="participants">Number of Participants</label>
+          <input type="number" id="participants" min="1" max="20" required>
+        </div>
+
+        <div class="form-group">
+          <label for="date">Preferred Date</label>
+          <input type="date" id="date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" required>
+        </div>
+
+        <button type="submit" class="btn">Confirm Booking</button>
+      </form>
+    </div>
+
+    <a href="leh-ladakh-jammu-kashmir.html" class="back-btn">← Back to Jammu & Kashmir Activities</a>
+  </div>
+
+  <script>
+    const jammuAdventures = {
+      "Mountain Biking": {
+        provider: "Leh Biking Club",
+        rating: "★★★★☆ (4.6/5)",
+        experience: "10+ years experience",
+        certification: "Certified by JK Tourism",
+        duration: "4-6 hours",
+        difficulty: "High",
+        group: "2-8 people",
+        prices: [
+          { name: "Basic Trail", value: "basic", desc: "Includes guide and gear", price: "₹2,500/person" },
+          { name: "Extreme Passes", value: "extreme", desc: "With backup vehicle and meals", price: "₹4,800/person" }
+        ]
+      },
+      "Trekking": {
+        provider: "Himalayan Treks Co.",
+        rating: "★★★★☆ (4.7/5)",
+        experience: "15+ years experience",
+        certification: "Certified Trek Leaders",
+        duration: "2-5 days",
+        difficulty: "Moderate to Hard",
+        group: "4-10 people",
+        prices: [
+          { name: "2-Day Trek", value: "2day", desc: "Includes meals & tent stay", price: "₹3,000/person" },
+          { name: "5-Day Expedition", value: "5day", desc: "All inclusive", price: "₹7,500/person" }
+        ]
+      },
+      "MotorBike tours": {
+        provider: "Royal Rides Ladakh",
+        rating: "★★★★★ (4.9/5)",
+        experience: "12+ years experience",
+        certification: "Certified Motorcycle Tours",
+        duration: "Full day",
+        difficulty: "Moderate",
+        group: "2-6 riders",
+        prices: [
+          { name: "Standard Tour", value: "standard", desc: "Bike + fuel + guide", price: "₹5,000" },
+          { name: "Luxury Package", value: "luxury", desc: "Includes hotel & meals", price: "₹9,500" }
+        ]
+      },
+      "River rafting": {
+        provider: "Zanskar Rafting Co.",
+        rating: "★★★★☆ (4.5/5)",
+        experience: "8+ years experience",
+        certification: "International Safety Standards",
+        duration: "3 hours",
+        difficulty: "Moderate to High",
+        group: "6-10 people",
+        prices: [
+          { name: "Zanskar Sprint", value: "sprint", desc: "10 km rapids", price: "₹1,800/person" },
+          { name: "Glacier Run", value: "glacier", desc: "20 km thrill ride", price: "₹3,200/person" }
+        ]
+      },
+      "Camping": {
+        provider: "Ladakh Wilderness Camps",
+        rating: "★★★★☆ (4.4/5)",
+        experience: "6+ years experience",
+        certification: "Eco-Certified",
+        duration: "Overnight",
+        difficulty: "Easy",
+        group: "4-12 people",
+        prices: [
+          { name: "Standard Tent", value: "standard", desc: "With meals", price: "₹2,200/person" },
+          { name: "Luxury Tent", value: "luxury", desc: "Heated tent + meals", price: "₹3,800/person" }
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const activityName = params.get('activity');
+
+    if (activityName && jammuAdventures[activityName]) {
+      const activity = jammuAdventures[activityName];
+
+      document.getElementById('booking-title').textContent = activityName;
+      document.getElementById('header-subtitle').textContent = `Book your ${activityName} experience`;
+      document.getElementById('booking-location').textContent = "Location: Leh-Ladakh, Jammu & Kashmir";
+
+      document.getElementById('provider-name').textContent = activity.provider;
+      document.getElementById('provider-rating').textContent = activity.rating;
+      document.getElementById('provider-experience').textContent = activity.experience;
+      document.getElementById('provider-certification').textContent = activity.certification;
+
+      document.getElementById('activity-name').textContent = activityName;
+      document.getElementById('activity-duration').textContent = `Duration: ${activity.duration}`;
+      document.getElementById('activity-difficulty').textContent = `Difficulty: ${activity.difficulty}`;
+      document.getElementById('activity-group').textContent = `Group size: ${activity.group}`;
+
+      const priceOptions = document.getElementById('price-options');
+      priceOptions.innerHTML = activity.prices.map(p => `
+        <div class="price-option">
+          <div><strong>${p.name}</strong><p>${p.desc}</p></div>
+          <span>${p.price}</span>
+        </div>
+      `).join('');
+
+      const packageSelect = document.getElementById('package');
+      packageSelect.innerHTML = '<option value="">Choose an option</option>' +
+        activity.prices.map(p => `<option value="${p.value}">${p.name} - ${p.price}</option>`).join('');
+    } else {
+      window.location.href = 'jammu-kashmir.html';
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = {
+        activity: activityName,
+        package: document.getElementById('package').value,
+        participants: document.getElementById('participants').value,
+        date: document.getElementById('date').value,
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value
+      };
+      console.log("Booking submitted:", formData);
+      alert(`Thank you ${formData.name}! Your booking for ${activityName} is confirmed.`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>
